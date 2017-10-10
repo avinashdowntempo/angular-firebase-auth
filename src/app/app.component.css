@@ -1,0 +1,14 @@
+.card-img-top{
+    width:19rem;
+    border-radius: 50rem;
+    padding: 1rem;
+}
+.container{
+    text-align: center;
+    text-align: -webkit-center;
+}
+.card{
+background: antiquewhite;
+border-top-left-radius: 11rem;
+border-top-right-radius: 11rem;
+}
