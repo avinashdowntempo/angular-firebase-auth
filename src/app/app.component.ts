@@ -14,21 +14,32 @@ import * as firebase from 'firebase/app';
     <div class="alert alert-success" role="alert">
     Succesfully logged in!
   </div>
-    <button (click)="logout()">Logout</button>
+    <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
   </div>
   </div>
 </div>
   
     <ng-template #showLogin>
-      <p>Please login.</p>
-      <button (click)="login()">Login with Google</button>
-      <button (click)="facebookLogin()">Login with Facebook</button>
+
+
+<div class="jumbotron">
+  <h1 class="display-3">Please login.</h1>
+  <p class="lead">This is a simple angular firebase app to test authentication.</p>
+  <hr class="my-4">
+  <p class="lead">
+       <button type="button" class="btn btn-sm btn-social btn-lg btn-google" (click)="login()">
+     <i class="fa fa-google"></i>Sign in with Google</button>
+      <button type="button" class="btn btn-sm btn-social btn-lg btn-facebook" (click)="facebookLogin()">
+      <i class="fa fa-facebook"></i>Sign in with Facebook</button>
+  </p>
+</div>
     </ng-template>
   `,
   styleUrls: ['./app.component.css'],
   providers: [AngularFireAuth]
 })
 export class AppComponent {
+  facebook='facebook';
   constructor(public afAuth: AngularFireAuth) {
   }
   login() {
@@ -42,12 +53,15 @@ export class AppComponent {
      // The signed-in user info.
      var user = result.user;
      console.log(user);
+     this.facebook = 'google';
     });
   }
   facebookLogin() {
     var provider = new firebase.auth.FacebookAuthProvider();;
     provider.addScope('user_birthday');
     provider.addScope('email');
+    provider.addScope('public_profile');
+    provider.addScope('user_friends');
     this.afAuth.auth.signInWithPopup(provider).then(function(result) {
      // This gives you a Google Access Token.
      var token = result.credential.accessToken;
@@ -55,6 +69,7 @@ export class AppComponent {
      // The signed-in user info.
      var user = result.user;
      console.log(user);
+     this.facebook='facebook';
     });
   }
   logout() {

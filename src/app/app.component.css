@@ -4,11 +4,34 @@
     padding: 1rem;
 }
 .container{
-    text-align: center;
     text-align: -webkit-center;
+    text-align: -moz-center;
+
+}
+.facebook-col{
+    background: rgba(63, 63, 191, 0.78);
+}
+.google-col{
+    background: rgba(227, 32, 35, 0.78);
 }
 .card{
-background: antiquewhite;
 border-top-left-radius: 11rem;
 border-top-right-radius: 11rem;
+height: 40rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.jumbotron {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
