@@ -8,11 +8,14 @@
     text-align: -moz-center;
 
 }
+.alert-success {
+    width: 17rem;
+}
 .facebook-col{
-    background: rgba(63, 63, 191, 0.78);
+    background: rgba(63, 63, 191, 0.25);
 }
 .google-col{
-    background: rgba(227, 32, 35, 0.78);
+    background: rgba(227, 32, 35, 0.25);
 }
 .card{
 border-top-left-radius: 11rem;
