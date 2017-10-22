@@ -2,19 +2,40 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AngularFireModule } from 'angularfire2';
 
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { DataService } from './data.service';
+import { BdDashComponent } from './bd-dash/bd-dash.component';
+import { SpocDashComponent } from './spoc-dash/spoc-dash.component';
+import { InterviewDashComponent } from './interview-dash/interview-dash.component';
+
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'bd-dash', component: BdDashComponent },
+  { path: 'spoc-dash',      component: SpocDashComponent },
+  { path: 'interview-dash',      component: InterviewDashComponent },  
+  { path: '',    redirectTo: '/login',    pathMatch: 'full'  },
+  { path: '**', component: LoginComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    BdDashComponent,
+    SpocDashComponent,
+    InterviewDashComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    ),
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -27,7 +48,7 @@ import { LoginComponent } from './login/login.component';
       messagingSenderId: '619419098799'
     }),
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

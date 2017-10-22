@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card align-self-center" style="width: 20rem;" [ngClass]="(user.facebook)?'facebook-col':'google-col'">
+    <img class="card-img-top rounded-circle" src="{{ user.photoUrl }}" alt="Card image cap">
+    <div class="card-body">
+      <h4 class="card-title"> {{ user.name }}</h4>
+      <div class="alert alert-success" role="alert">
+        Succesfully logged in!
+      </div>
+      <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>
