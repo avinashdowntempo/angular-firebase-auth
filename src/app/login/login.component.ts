@@ -13,79 +13,83 @@ import { Router } from '@angular/router';
 
 })
 export class LoginComponent implements OnInit {
-  public facebook: boolean = false;
+  public facebook = false;
   users: Array<any>;
   expresstoken: ExpressToken;
+  currentUser: any;
+  promise: Promise<{}>;
   constructor(public afAuth: AngularFireAuth, private _dataService: DataService, private router: Router) {
     this._dataService.getUsers()
       .subscribe(res => this.users = res);
 
   }
   ngOnInit() {
-    console.log("login init");
+    console.log('login init');
   }
   login() {
-    var provider = new firebase.auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
     this.afAuth.auth.signInWithPopup(provider).then((result) => {
-      // This gives you a Google Access Token.
       let token = '';
       token = result.credential.accessToken;
       console.log(token);
-      // The signed-in user info.
-      let user = result.user;
+      const user = result.user;
       console.log(user);
       this.facebook = false;
       console.log(this.facebook);
-      console.log("email:", user.email);
-      if (user.email && user.email != '') {
-        this._dataService.getToken(user.email, "token received")
+      console.log('email:', user.email);
+      if (user.email && user.email !== '') {
+        this._dataService.getToken(user.email, 'token received')
           .subscribe(res => {
             this.expresstoken = res;
-            console.log("heeeeeeeeello:", res, "expresstoken", this.expresstoken);
+            console.log('heeeeeeeeello:', res, 'expresstoken', this.expresstoken);
             localStorage.setItem('currentUser', JSON.stringify({ username: this.expresstoken.first_name, facebook: false, name: user.displayName, photoUrl: user.photoURL }));
-            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser.first_name != '' && currentUser.facebook === false) {
-              this.router.navigate(['bd-dash']);
-            }
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
           }
           );
       }
-
     });
+    const LoginTimer = setInterval(() => {
+      if (this.currentUser.first_name !== '' && this.currentUser.facebook === false) {
+        clearInterval(LoginTimer);
+      this.router.navigate(['bd-dash']);
+    }
+    }, 1000 );
   }
+
   facebookLogin() {
-    var provider = new firebase.auth.FacebookAuthProvider();;
+    const provider = new firebase.auth.FacebookAuthProvider();;
     provider.addScope('user_birthday');
     provider.addScope('email');
     provider.addScope('public_profile');
     provider.addScope('user_friends');
     this.afAuth.auth.signInWithPopup(provider).then((result) => {
-      // This gives you a Google Access Token.
-      var token = result.credential.accessToken;
+      const token = result.credential.accessToken;
       console.log(token);
-      // The signed-in user info.
-      var user = result.user;
+      const user = result.user;
       console.log(user);
       this.facebook = true;
       console.log(this.facebook);
-      console.log("email:", user.email);
-      if (user.email && user.email != '') {
-        this._dataService.getToken(user.email, "token received")
+      console.log('email:', user.email);
+      if (user.email && user.email !== '') {
+        this._dataService.getToken(user.email, 'token received')
           .subscribe(res => {
             this.expresstoken = res;
-            console.log("heeeeeeeeello:", res, "expresstoken", this.expresstoken);
+            console.log('heeeeeeeeello:', res, 'expresstoken', this.expresstoken);
             localStorage.setItem('currentUser', JSON.stringify({ username: this.expresstoken.first_name, facebook: true, name: user.displayName, photoUrl: user.photoURL }));
-            let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser.first_name != '' && currentUser.facebook) {
-              this.router.navigate(['spoc-dash']);
-            }
+            this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
           }
           );
 
       }
     });
+    const LoginTimer = setInterval(() => {
+      if (this.currentUser.first_name !== '' && this.currentUser.facebook) {
+        clearInterval(LoginTimer);
+      this.router.navigate(['spoc-dash']);
+    }
+    }, 1000 );
   }
   logout() {
     this.afAuth.auth.signOut();

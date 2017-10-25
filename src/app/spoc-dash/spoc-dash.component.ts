@@ -10,25 +10,15 @@ import { Observable } from 'rxjs/Observable';
   providers: [AngularFireAuth]
 })
 export class SpocDashComponent implements OnInit {
-  user:any;
-  data:Observable<any>;
-  constructor(public afAuth: AngularFireAuth,private router: Router) { }
-
+  user: any;
+  data: Observable<any>;
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
+  }
   ngOnInit() {
     this.initialise();
   }
-  initialise(){
-    this.data=new Observable(observer => {
-      setInterval(()=>{       
-        observer.next( JSON.parse(localStorage.getItem('currentUser')));
-        if(JSON.parse(localStorage.getItem('currentUser')).photoUrl)
-        {
-          observer.next( JSON.parse(localStorage.getItem('currentUser')));
-          observer.complete();
-        }
-    }, 500);   
-  });
-  this.data.subscribe(result=>{this.user=result;console.log("from inside subsriber",this.user)});
+  initialise() {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
   logout() {
     this.afAuth.auth.signOut();
