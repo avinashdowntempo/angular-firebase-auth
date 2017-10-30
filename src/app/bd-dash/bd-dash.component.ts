@@ -19,6 +19,7 @@ export class BdDashComponent implements OnInit {
   }
   initialise() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('bd-dash-user', this.user);
   }
   logout() {
     this.afAuth.auth.signOut();

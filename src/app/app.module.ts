@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AngularFireModule } from 'angularfire2';
-
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +13,7 @@ import { DataService } from './data.service';
 import { BdDashComponent } from './bd-dash/bd-dash.component';
 import { SpocDashComponent } from './spoc-dash/spoc-dash.component';
 import { InterviewDashComponent } from './interview-dash/interview-dash.component';
+import { LoginServiceService } from './login-service.service';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
       messagingSenderId: '619419098799'
     }),
   ],
-  providers: [DataService],
+  providers: [DataService, LoginServiceService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
