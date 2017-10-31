@@ -18,9 +18,9 @@ import { LoginServiceService } from './login-service.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'bd-dash', component: BdDashComponent },
-  { path: 'spoc-dash',      component: SpocDashComponent },
-  { path: 'interview-dash',      component: InterviewDashComponent },
-  { path: '',    redirectTo: '/login',    pathMatch: 'full'  },
+  { path: 'spoc-dash', component: SpocDashComponent },
+  { path: 'interview-dash', component: InterviewDashComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: LoginComponent }
 ];
 

@@ -10,8 +10,8 @@ export class DataService {
     return this._http.get('https://localhost:3000/users/users')
       .map(result => this.result = result.json().data);
   }
-  getToken(first_name: string, token: string) {
-    const body = { first_name: first_name, token: token };
+  getToken(email: string, token: string) {
+    const body = { email: email, token: token };
     return this._http.post('https://localhost:3000/gettoken', body)
       .map(result => this.result = result.json());
   }

@@ -15,3 +15,9 @@ left: 0;
 right: 0;
 margin: auto;
 }
+
+.facebook{
+    color: #fff;
+    background-color: #3b5998;
+    border-color: rgba(0,0,0,0.2);
+}

@@ -4,7 +4,10 @@
     text-align: -moz-center;
 
 }
-
+.prof-pic{
+    max-width: 65px;
+    border-radius: 50%;
+}
 .facebook-col{
     background: rgba(63, 63, 191, 0.25);
 }

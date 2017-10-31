@@ -42,7 +42,15 @@ export class LoginComponent implements OnInit {
   }
   locallogin() {
     console.log('email:', this.email, '    password:', this.password);
-    this._loginService.locallogin(this.email, this.password);
+    this._loginService.locallogin(this.email, this.password).subscribe(
+      value => { this.currentUser = value; console.log('this.currentuser', this.currentUser) }
+    );
+    const LoginTimer = setInterval(() => {
+      if (this.currentUser.username !== '' && this.currentUser.facebook === false) {
+        clearInterval(LoginTimer);
+        this.router.navigate(['interview-dash']);
+      }
+    }, 1000);
     this.email = this.password = '';
   }
   fblogintest() {

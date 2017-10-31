@@ -18,18 +18,32 @@ export class LoginServiceService {
       .subscribe(res => { this.users = res; console.log('users:', this.users); });
   }
 
-  locallogin(email: string, password: string) {
-    console.log('email:   -', email, '-');
-    console.log('password:   -', password, '-');
-    this.afAuth
-      .auth
-      .signInWithEmailAndPassword(email, password)
-      .then(value => {
-        console.log('Nice, it worked!');
-      })
-      .catch(err => {
-        console.log('Something went wrong:', err.message);
-      });
+  locallogin(email: string, password: string): Observable<any> {
+    this.loginobs = new Observable(observer => {
+      this.afAuth.auth
+        .signInWithEmailAndPassword(email, password)
+        .then(value => {
+          console.log(value.email);
+          console.log('Nice, it worked!');
+          if (value.email !== '') {
+            this._dataService.getToken(value.email, value.refreshToken)
+              .subscribe(res => {
+                this.resp = res;
+                localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: false, name: this.resp.displayName, photoUrl: "https://www.touchsupport.com/wp-content/uploads/2015/03/customer-login-white-label.svg" }));
+                this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                observer.next(this.currentUser);
+                observer.complete();
+                console.log('observable', this.loginobs);
+              }
+              );
+          }
+
+        })
+        .catch(err => {
+          console.log('Something went wrong:', err.message);
+        });
+    });
+    return this.loginobs;
   }
 
   login(): Observable<any> {
