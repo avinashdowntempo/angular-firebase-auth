@@ -18,6 +18,20 @@ export class LoginServiceService {
       .subscribe(res => { this.users = res; console.log('users:', this.users); });
   }
 
+  locallogin(email: string, password: string) {
+    console.log('email:   -', email, '-');
+    console.log('password:   -', password, '-');
+    this.afAuth
+      .auth
+      .signInWithEmailAndPassword(email, password)
+      .then(value => {
+        console.log('Nice, it worked!');
+      })
+      .catch(err => {
+        console.log('Something went wrong:', err.message);
+      });
+  }
+
   login(): Observable<any> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');

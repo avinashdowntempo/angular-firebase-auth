@@ -7,14 +7,15 @@ import { LoginServiceService } from '../login-service.service';
 import { ExpressToken } from '../express-token';
 import { LoginData } from '../login-data';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  isloggedin: any;
-  public facebook = false;
+  email: string;
+  password: string;
   users: Array<any>;
   expresstoken: ExpressToken;
   currentUser: any;
@@ -39,7 +40,11 @@ export class LoginComponent implements OnInit {
       }
     }, 1000);
   }
-
+  locallogin() {
+    console.log('email:', this.email, '    password:', this.password);
+    this._loginService.locallogin(this.email, this.password);
+    this.email = this.password = '';
+  }
   fblogintest() {
     this._loginService.facebookLogin().subscribe(
       value => { this.currentUser = value; console.log('this.currentuser', this.currentUser) }

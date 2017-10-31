@@ -1,40 +1,17 @@
-.card-img-top{
-    width:19rem;
-    border-radius: 50rem;
-    padding: 1rem;
-}
+
 .container{
     text-align: -webkit-center;
     text-align: -moz-center;
 
 }
-.alert-success {
-    width: 17rem;
-}
-.facebook-col{
-    background: rgba(63, 63, 191, 0.25);
-}
-.google-col{
-    background: rgba(227, 32, 35, 0.25);
-}
-.card{
-border-top-left-radius: 11rem;
-border-top-right-radius: 11rem;
-height: 40rem;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
-.jumbotron {
-    width: 50%;
-    height: 50%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+
+.login-container{
+max-width: 390px;
+height: 50%;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
 }
