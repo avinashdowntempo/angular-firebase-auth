@@ -28,13 +28,13 @@ export class LoginServiceService {
         token = result.credential.accessToken;
         const user = result.user;
         if (user.email && user.email !== '') {
-          this._dataService.getToken(user.email, 'token received')
+          this._dataService.getToken(user.email, token)
             .subscribe(res => {
               this.resp = res;
-              localStorage.setItem('currentUser', JSON.stringify({ username: this.resp.first_name, facebook: false, name: user.displayName, photoUrl: user.photoURL }));
+              localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: false, name: user.displayName, photoUrl: user.photoURL }));
               this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                observer.next(this.currentUser);
-                observer.complete();
+              observer.next(this.currentUser);
+              observer.complete();
               console.log('observable', this.loginobs);
             }
             );
@@ -43,7 +43,7 @@ export class LoginServiceService {
 
     });
     console.log('observable', this.loginobs);
-      return this.loginobs;
+    return this.loginobs;
   }
 
   facebookLogin(): Observable<any> {
@@ -58,13 +58,13 @@ export class LoginServiceService {
         token = result.credential.accessToken;
         const user = result.user;
         if (user.email && user.email !== '') {
-          this._dataService.getToken(user.email, 'token received')
+          this._dataService.getToken(user.email, token)
             .subscribe(res => {
               this.resp = res;
-              localStorage.setItem('currentUser', JSON.stringify({ username: this.resp.first_name, facebook: true, name: user.displayName, photoUrl: user.photoURL }));
+              localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: true, name: user.displayName, photoUrl: user.photoURL }));
               this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                observer.next(this.currentUser);
-                observer.complete();
+              observer.next(this.currentUser);
+              observer.complete();
               console.log('observable', this.loginobs);
             }
             );
