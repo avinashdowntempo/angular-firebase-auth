@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 import { JwtHelper } from 'angular2-jwt';
 
 import { DataService } from './data.service';
+import { RouteRoleService } from './route-role.service';
 import { ExpressToken } from './express-token';
 import { LoginData } from './login-data';
 
@@ -17,12 +18,19 @@ export class LoginServiceService {
   resp: any;
   currentUser: any;
   jwtHelper: JwtHelper = new JwtHelper();
-  constructor(private _dataService: DataService, public afAuth: AngularFireAuth) {
+  constructor(private _routeRoleService: RouteRoleService, private _dataService: DataService, public afAuth: AngularFireAuth) {
     this._dataService.getUsers()
       .subscribe(res => { this.users = res; console.log('users:', this.users); });
   }
 
-  locallogin(email: string, password: string): Observable<any> {
+  checkUserLogged(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedtoken = this.jwtHelper.decodeToken(token);
+      this._routeRoleService.routeRole(decodedtoken.role);
+    }
+  }
+  localLogin(email: string, password: string): Observable<any> {
     this.loginobs = new Observable(observer => {
       this.afAuth.auth
         .signInWithEmailAndPassword(email, password)
@@ -51,7 +59,7 @@ export class LoginServiceService {
     });
     return this.loginobs;
   }
-  login(): Observable<any> {
+  googleLogin(): Observable<any> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');

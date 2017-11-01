@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+.logout-list
+{
+    left: calc(100% - 100px) !important;
+    min-width: 6rem !important;
+}
+.container{
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+.ces-prof-name{
+    margin-left: auto;
+    margin-bottom: 0px;
+    margin-right: 10px;
+}
+.prof-pic{
+    max-width: 46px;
+    border-radius: 50%;
+    width:46px;
+}

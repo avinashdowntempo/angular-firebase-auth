@@ -2,8 +2,9 @@
   <a class="navbar-brand">
     <img src="http://www.cesltd.com/images/CES-Logo.png" height="35" class="d-inline-block" alt=""> Interviewee panel
   </a>
+  <h6 class='ces-prof-name lead'> {{ user.name }}</h6>
   <div ngbDropdown class="d-inline-block float-right">
-      <img src="{{ user.photoUrl }}" id="dropdownBasic1" ngbDropdownToggle class="prof-pic" alt="Responsive image">
+      <img [src]="user.photoUrl" id="dropdownBasic1" ngbDropdownToggle class="prof-pic" alt="Responsive image">
       <div class="logout-list" ngbDropdownMenu aria-labelledby="dropdownBasic1">
         <button class="dropdown-item" (click)="logout()">Logout</button>
       </div>
@@ -11,18 +12,4 @@
 </nav>
 <div class="alert alert-primary" style="word-wrap:break-word" role="alert">
   token: {{ user.token }}
-</div>
-<div class="container-fluid">
-  <div class="col-md-10">
-    <div class="card align-self-center" style="width: 20%;" [ngClass]="(user.facebook)?'facebook-col':'google-col'">
-      <img class="card-img-top rounded-circle" src="{{ user.photoUrl }}" alt="Card image cap">
-      <div class="card-body">
-        <h4 class="card-title"> {{ user.name }}</h4>
-        <div class="alert alert-success" role="alert">
-          Succesfully logged in!
-        </div>
-        <button type="button" class="btn btn-warning" (click)="logout()">Logout</button>
-      </div>
-    </div>
-  </div>
 </div>

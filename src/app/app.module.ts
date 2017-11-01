@@ -20,6 +20,9 @@ import { SpocDashComponent } from './spoc-dash/spoc-dash.component';
 import { InterviewDashComponent } from './interview-dash/interview-dash.component';
 import { LoginServiceService } from './login-service.service';
 import { RouteRoleService } from './route-role.service';
+import { BdGuardGuard } from './bd-guard.guard';
+import { IntervieweeGuardGuard } from './interviewee-guard.guard';
+import { SpocGuardGuard } from './spoc-guard.guard';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -33,9 +36,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'bd-dash', component: BdDashComponent },
-  { path: 'spoc-dash', component: SpocDashComponent },
-  { path: 'interview-dash', component: InterviewDashComponent },
+  { path: 'bd-dash', component: BdDashComponent, canActivate: [BdGuardGuard] },
+  { path: 'spoc-dash', component: SpocDashComponent, canActivate: [SpocGuardGuard] },
+  { path: 'interview-dash', component: InterviewDashComponent, canActivate: [IntervieweeGuardGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: LoginComponent }
 ];
@@ -65,7 +68,7 @@ const appRoutes: Routes = [
       messagingSenderId: '619419098799'
     }),
   ],
-  providers: [DataService, LoginServiceService, RouteRoleService, AngularFireAuth, {
+  providers: [BdGuardGuard, IntervieweeGuardGuard, SpocGuardGuard, DataService, LoginServiceService, RouteRoleService, AngularFireAuth, {
     provide: AuthHttp,
     useFactory: authHttpServiceFactory,
     deps: [Http, RequestOptions]
