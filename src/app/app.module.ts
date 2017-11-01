@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import { Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -14,6 +19,17 @@ import { BdDashComponent } from './bd-dash/bd-dash.component';
 import { SpocDashComponent } from './spoc-dash/spoc-dash.component';
 import { InterviewDashComponent } from './interview-dash/interview-dash.component';
 import { LoginServiceService } from './login-service.service';
+import { RouteRoleService } from './route-role.service';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    tokenName: 'token',
+  tokenGetter: (() => localStorage.getItem('token')),
+  globalHeaders: [{'Content-Type': 'application/json'}],
+  noJwtError: false,
+  noTokenScheme: true
+  }), http, options);
+}
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,7 +48,7 @@ const appRoutes: Routes = [
     SpocDashComponent,
     InterviewDashComponent
   ],
-  imports: [
+  imports: [NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
@@ -49,7 +65,11 @@ const appRoutes: Routes = [
       messagingSenderId: '619419098799'
     }),
   ],
-  providers: [DataService, LoginServiceService, AngularFireAuth],
+  providers: [DataService, LoginServiceService, RouteRoleService, AngularFireAuth, {
+    provide: AuthHttp,
+    useFactory: authHttpServiceFactory,
+    deps: [Http, RequestOptions]
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

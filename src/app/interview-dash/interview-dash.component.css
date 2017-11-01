@@ -1,11 +1,15 @@
-
+.logout-list
+{
+    left: calc(100% - 100px) !important;
+    min-width: 6rem !important;
+}
 .container{
     text-align: -webkit-center;
     text-align: -moz-center;
 
 }
 .prof-pic{
-    max-width: 65px;
+    max-width: 46px;
     border-radius: 50%;
 }
 .facebook-col{

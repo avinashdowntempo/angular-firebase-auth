@@ -1,3 +1,11 @@
+.logout-list
+{
+    left: calc(100% - 100px) !important;
+    min-width: 6rem !important;
+}
+.dropdown-item{
+    min-width: 6rem;
+}
 
 .container{
     text-align: -webkit-center;
@@ -5,7 +13,7 @@
 
 }
 .prof-pic{
-    max-width: 65px;
+    max-width: 46px;
     border-radius: 50%;
 }
 .facebook-col{

@@ -23,6 +23,7 @@ export class SpocDashComponent implements OnInit {
   logout() {
     this.afAuth.auth.signOut();
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUser');
     this.router.navigate(['login']);
   }
 }

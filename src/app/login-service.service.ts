@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+
+import { JwtHelper } from 'angular2-jwt';
+
 import { DataService } from './data.service';
 import { ExpressToken } from './express-token';
 import { LoginData } from './login-data';
@@ -13,6 +16,7 @@ export class LoginServiceService {
   users: any;
   resp: any;
   currentUser: any;
+  jwtHelper: JwtHelper = new JwtHelper();
   constructor(private _dataService: DataService, public afAuth: AngularFireAuth) {
     this._dataService.getUsers()
       .subscribe(res => { this.users = res; console.log('users:', this.users); });
@@ -29,7 +33,9 @@ export class LoginServiceService {
             this._dataService.getToken(value.email, value.refreshToken)
               .subscribe(res => {
                 this.resp = res;
-                localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: false, name: this.resp.displayName, photoUrl: "https://www.touchsupport.com/wp-content/uploads/2015/03/customer-login-white-label.svg" }));
+                let decodedtoken = this.jwtHelper.decodeToken(this.resp.token);
+                localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: false, role: decodedtoken.role, name: this.resp.displayName, photoUrl: "https://www.touchsupport.com/wp-content/uploads/2015/03/customer-login-white-label.svg" }));
+                localStorage.setItem('token', this.resp.token);
                 this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
                 observer.next(this.currentUser);
                 observer.complete();
@@ -45,7 +51,6 @@ export class LoginServiceService {
     });
     return this.loginobs;
   }
-
   login(): Observable<any> {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
@@ -59,7 +64,9 @@ export class LoginServiceService {
           this._dataService.getToken(user.email, token)
             .subscribe(res => {
               this.resp = res;
-              localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: false, name: user.displayName, photoUrl: user.photoURL }));
+              let decodedtoken = this.jwtHelper.decodeToken(this.resp.token);
+              localStorage.setItem('currentUser', JSON.stringify({ role: decodedtoken.role, token: this.resp.token, username: this.resp.first_name, facebook: false, name: user.displayName, photoUrl: user.photoURL }));
+              localStorage.setItem('token', this.resp.token);
               this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
               observer.next(this.currentUser);
               observer.complete();
@@ -89,7 +96,9 @@ export class LoginServiceService {
           this._dataService.getToken(user.email, token)
             .subscribe(res => {
               this.resp = res;
-              localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: true, name: user.displayName, photoUrl: user.photoURL }));
+              let decodedtoken = this.jwtHelper.decodeToken(this.resp.token);
+              localStorage.setItem('currentUser', JSON.stringify({ role: decodedtoken.role, token: this.resp.token, username: this.resp.first_name, facebook: true, name: user.displayName, photoUrl: user.photoURL }));
+              localStorage.setItem('token', this.resp.token);
               this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
               observer.next(this.currentUser);
               observer.complete();
