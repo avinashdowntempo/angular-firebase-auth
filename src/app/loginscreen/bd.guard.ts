@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, CanLoad, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class BdGuard implements CanActivate {
+export class BdGuard implements CanLoad {
   constructor(private router: Router) { }
-  canActivate(): boolean {
+  canLoad(): boolean  {
     const token = JSON.parse(localStorage.getItem('currentUser'));
     if (token.role === 'BD') {
       return true;

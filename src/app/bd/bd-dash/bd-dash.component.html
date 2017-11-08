@@ -1,15 +1,7 @@
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand">
-    <img src="http://www.cesltd.com/images/CES-Logo.png" height="35" class="d-inline-block" alt=""> Business development panel
-  </a>
-  <h6 class='ces-prof-name lead'> {{ user.name }}</h6>
-  <div ngbDropdown class="d-inline-block float-right">
-    <img [src]="user.photoUrl" id="dropdownBasic1" ngbDropdownToggle class="prof-pic" alt="Responsive image">
-    <div class="logout-list" ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <button class="dropdown-item" (click)="logout()">Logout</button>
-    </div>
+<div class="container-fluid">
+    <app-nav-header panel="BD" (mydata)="getUser($event)"></app-nav-header>
+  <app-navbar></app-navbar>
+  <div class="alert token alert-primary" style="word-wrap:break-word" role="alert">
+    token: {{ user.token }}
   </div>
-</nav>
-<div class="alert alert-primary" style="word-wrap:break-word" role="alert">
-  token: {{ user.token }}
 </div>

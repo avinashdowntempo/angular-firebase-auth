@@ -5,13 +5,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SpocRouting } from './spoc.routing';
 import { SpocDashComponent } from './spoc-dash/spoc-dash.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     SpocRouting,
-    NgbModule
+    NgbModule,
+    SharedModule
   ],
-  declarations: [SpocDashComponent]
+  declarations: [SpocDashComponent, NavbarComponent]
 })
 export class SpocModule { }

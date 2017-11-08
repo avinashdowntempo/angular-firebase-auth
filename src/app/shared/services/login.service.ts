@@ -41,7 +41,7 @@ export class LoginService {
               .subscribe(res => {
                 this.resp = res;
                 const decodedtoken = this.jwtHelper.decodeToken(this.resp.token);
-                localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: false, role: decodedtoken.role, name: this.resp.displayName, photoUrl: "https://www.touchsupport.com/wp-content/uploads/2015/03/customer-login-white-label.svg" }));
+                localStorage.setItem('currentUser', JSON.stringify({ token: this.resp.token, username: this.resp.first_name, facebook: false, role: decodedtoken.role, name: this.resp.displayName, photoUrl: 'https://www.touchsupport.com/wp-content/uploads/2015/03/customer-login-white-label.svg' }));
                 localStorage.setItem('token', this.resp.token);
                 this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
                 observer.next(this.currentUser);

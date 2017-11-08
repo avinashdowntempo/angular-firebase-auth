@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -29,16 +30,16 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 const appRoutes: Routes = [
   { path: 'login', loadChildren: 'app/loginscreen/loginscreen.module#LoginscreenModule' },
-  { path: 'bd-dash', loadChildren: 'app/bd/bd.module#BdModule', canActivate: [BdGuard] },
-  { path: 'spoc-dash', loadChildren: 'app/spoc/spoc.module#SpocModule', canActivate: [SpocGuard] },
-  { path: 'interview-dash', loadChildren: 'app/interview/interview.module#InterviewModule', canActivate: [IntervieweeGuard] },
+  { path: 'bd-dash', loadChildren: 'app/bd/bd.module#BdModule', canLoad: [BdGuard] },
+  { path: 'spoc-dash', loadChildren: 'app/spoc/spoc.module#SpocModule', canLoad: [SpocGuard] },
+  { path: 'interview-dash', loadChildren: 'app/interview/interview.module#InterviewModule', canLoad: [IntervieweeGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', loadChildren: 'app/loginscreen/loginscreen.module#LoginscreenModule' }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [NgbModule.forRoot(),
   RouterModule.forRoot(
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   ),
     BrowserModule,
     FormsModule,
+    SharedModule,
     HttpModule,
   AngularFireModule.initializeApp({
     apiKey: 'AIzaSyCRv69DsqAEE5SwnSqouXf_DjS4YLNzDFk',

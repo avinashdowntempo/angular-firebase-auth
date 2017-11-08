@@ -9,7 +9,6 @@
     text-align: -moz-center;
 }
 .ces-prof-name{
-    margin-left: auto;
     margin-bottom: 0px;
     margin-right: 10px;
 }
@@ -17,4 +16,33 @@
     max-width: 46px;
     border-radius: 50%;
     width:46px;
+    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+}
+.notify{
+    margin-left: auto;
+    padding: 8px;
+}
+.badge{
+    position: relative;
+    top: -8px;
+    left: -2px;
+    color: white;
+    background: red;
+    border-radius: 50%;
+    font-size: 66%;
+}
+.fa-bell{
+    color: #00467e;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #00467e;
+}
+a {
+    color: #00467e;
+}
+.token{
+    width: 98%;
+    position: absolute;
+    bottom: 0px;
 }
