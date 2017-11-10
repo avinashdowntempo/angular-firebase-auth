@@ -46,3 +46,6 @@ a {
     position: absolute;
     bottom: 0px;
 }
+.input-group-addon{
+    width:10%;
+}

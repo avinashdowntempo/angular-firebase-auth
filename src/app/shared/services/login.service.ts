@@ -54,6 +54,7 @@ export class LoginService {
         })
         .catch(err => {
           console.log('Something went wrong:', err.message);
+          observer.error(new Error(err.message));
         });
     });
     return this.loginobs;

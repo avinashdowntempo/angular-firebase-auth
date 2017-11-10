@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   password: string;
   users: Array<any>;
   currentUser: any;
+  formerror = '';
   jwtHelper: JwtHelper = new JwtHelper();
   constructor(private _routeRoleService: RouteRoleService,
     public afAuth: AngularFireAuth, private _dataService: DataService, private router: Router, private _loginService: LoginService) {
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
     console.log('token expired', this.jwtHelper.isTokenExpired(token));
   }
   googleLogin() {
+    this.formerror = '';
     this._loginService.googleLogin().subscribe(
       value => this.currentUser = value
     );
@@ -53,9 +55,11 @@ export class LoginComponent implements OnInit {
     }, 1000);
   }
   localLogin() {
+    this.formerror = '';
     console.log('email:', this.email, '    password:', this.password);
     this._loginService.localLogin(this.email, this.password).subscribe(
-      value => { this.currentUser = value; console.log('this.currentuser', this.currentUser) }
+      value => { this.currentUser = value; console.log('this.currentuser', this.currentUser) },
+      err => this.formerror = err
     );
     const LoginTimer = setInterval(() => {
       if (this.currentUser.username !== '') {
@@ -66,6 +70,7 @@ export class LoginComponent implements OnInit {
     this.email = this.password = '';
   }
   facebookLogin() {
+    this.formerror = '';
     this._loginService.facebookLogin().subscribe(
       value => { this.currentUser = value; console.log('this.currentuser', this.currentUser) }
     );
