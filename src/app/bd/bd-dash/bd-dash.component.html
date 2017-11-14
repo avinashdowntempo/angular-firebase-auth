@@ -1,7 +1,6 @@
 <div class="container-fluid">
     <app-nav-header panel="BD" (mydata)="getUser($event)"></app-nav-header>
   <app-navbar></app-navbar>
-  <div class="alert token alert-primary" style="word-wrap:break-word" role="alert">
-    token: {{ user.token }}
-  </div>
+  <app-job-form></app-job-form>
+
 </div>
