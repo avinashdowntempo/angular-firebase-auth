@@ -1,52 +1,49 @@
 <div class="jumbotron container-fluid">
-    <form [formGroup]="jobForm" novalidate>
-        <div class="row">
-          <div class="col col-md-6  col-sm-12 col-12">
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Title" formControlName="title" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <input matInput formControlName="technology1" placeholder="Technology 1" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <input matInput formControlName="technology2" placeholder="Technology 2" >
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <input matInput formControlName="technology3" placeholder="Technology 3" >
-            </mat-form-field>
-            <mat-form-field>
-              <mat-select formControlName="city" placeholder="Select City">
-                <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-    
-            <mat-form-field class="example-full-width">
-              <textarea matInput formControlName="comment" placeholder="Leave a comment"></textarea>
-            </mat-form-field>
-          </div>
-          <div class="col col-md-6  col-sm-12 col-12">
-            <mat-form-field class="example-full-width">
-              <input type="number" formControlName="minexp" matInput placeholder="Min exp">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <input type="number" formControlName="maxexp" matInput placeholder="Max exp">
-            </mat-form-field>
-            <mat-form-field class="example-full-width">
-              <input matInput formControlName="email" email="true" placeholder="E-mail">
-            </mat-form-field>
-    
-            <mat-form-field class="example-full-width">
-              <textarea matInput formControlName="description" placeholder="Description"></textarea>
-            </mat-form-field>
-            <div class="float-right">
-              <button type="button" [disabled]="jobForm.status=='INVALID'" class="btn btn-ces">Post</button>
-              <button type="button" (click)="reserForm()" class="btn btn-dark">reset</button>
-            </div>
-    
-          </div>
+  <form [formGroup]="jobForm" novalidate>
+    <div class="row">
+      <div class="col col-md-6  col-sm-12 col-12">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Title" formControlName="title">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="technology1" placeholder="Technology 1">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="technology2" placeholder="Technology 2">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="technology3" placeholder="Technology 3">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select formControlName="city" placeholder="Select City">
+            <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput formControlName="comment" placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col col-md-6  col-sm-12 col-12">
+        <mat-form-field class="example-full-width">
+          <input type="number" formControlName="minexp" matInput placeholder="Min exp">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input type="number" formControlName="maxexp" matInput placeholder="Max exp">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="email" email="true" placeholder="E-mail">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput formControlName="description" placeholder="Description"></textarea>
+        </mat-form-field>
+        <div class="float-right">
+          <button type="button" (click)="saveForm()" [disabled]="jobForm.status=='INVALID'" class="btn btn-ces">Post</button>
+          <button type="button" (click)="resetForm()" class="btn btn-dark">reset</button>
         </div>
-      </form>
-      <p>Form value: {{ jobForm.value | json }}</p>
-      <p>Form status: {{ jobForm.status | json }}</p>
-      <p>city value: {{ jobForm.get('city').value }}</p>
+
+      </div>
+    </div>
+  </form>
 </div>

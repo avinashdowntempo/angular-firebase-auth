@@ -21,7 +21,7 @@ export class DataService {
     this.authHttp.get('https://localhost:3000/users/users')
       .subscribe(
       data => console.log('data from token attached get method', data),
-      err => console.log("im the errorooooooooo",err),
+      err => console.log('im the errorooooooooo', err),
       () => console.log('Request Complete')
       );
   }
