@@ -1,4 +1,5 @@
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     appRoutes,
     { enableTracing: true } // <-- debugging purposes only
   ),
+  BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     SharedModule,
