@@ -17,5 +17,9 @@ export class JobFormService {
     return this.authHttp.post('https://localhost:3000/jobs/new', body, { headers: myHeader })
       .map(result => result.json());
   }
+  getJobs(): Observable<any> {
+    return this.authHttp.get('https://localhost:3000/jobs/all')
+      .map(result => result.json());
+  }
 
 }
