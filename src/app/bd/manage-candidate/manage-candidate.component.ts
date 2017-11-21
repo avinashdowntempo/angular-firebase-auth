@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageCandidateComponent implements OnInit {
   jobs: [any];
-  panelOpenState: boolean = false;
   constructor(private _jobFormService: JobFormService) {
     this._jobFormService.getJobs().subscribe((result) => {
       this.jobs = result.value;

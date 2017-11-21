@@ -1,13 +1,20 @@
-<a (click)="toggle()" class="list-group-item list-group-item-action" [ngClass]="{'active': show }">
+<div class="ces-job-list">
+  <a (click)="toggle()" class="list-group-item list-group-item-action" [ngClass]="{'active': show }">
     <div>{{job.title}}
-       <i [ngClass]="{'fa-chevron-down': !show,'fa-chevron-up': show }" class="fa float-right" aria-hidden="true"></i></div>
+       <i [ngClass]="{'fa-chevron-down': !show,'fa-chevron-up': show }" class="fa float-right" aria-hidden="true"></i>
+      </div>
   </a>
   
   <div class="job-table" *ngIf="show">
+    <div class="button-group">
+      <button class="btn edit-button btn-sm btn-warning float-right" (click)="open()">
+          <i class="fa fa-pencil" aria-hidden="true"></i>Edit Job</button>
+      <button class="btn btn-sm btn-success float-right" (click)="open()">Add Candidate</button>
+    </div> 
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">{{this.show}}</th>
+        <th scope="col">#</th>
         <th scope="col">title</th>
         <th scope="col">tech1</th>
         <th scope="col">tech2</th>
@@ -24,7 +31,7 @@
     </thead>
     <tbody>
       <tr>
-        <td scope="col">#</td>
+        <th scope="row">1</th>
         <td scope="col">{{job.title}}</td>
         <td scope="col">{{job.technology1}}</td>
         <td scope="col">{{job.technology2}}</td>
@@ -39,4 +46,5 @@
       </tr>
      </tbody>
   </table>
+</div>
 </div>

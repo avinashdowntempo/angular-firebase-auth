@@ -50,7 +50,9 @@ a {
 .input-group-addon{
     width:10%;
 }
-
+.jumbotron[_ngcontent-c7]{
+    padding: 11px !important; 
+}
 
 
 /* material styles*/

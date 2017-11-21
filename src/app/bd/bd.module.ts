@@ -24,6 +24,8 @@ import { JobFormService } from './job-form.service';
 import { ManageCandidateComponent } from './manage-candidate/manage-candidate.component';
 import { BdStatusComponent } from './bd-status/bd-status.component';
 import { ListJobsComponent } from './list-jobs/list-jobs.component';
+import { ModalComponentComponent } from './modal-component/modal-component.component';
+import { JobUpdateModalComponent } from './job-update-modal/job-update-modal.component';
 
 @NgModule({
   imports: [
@@ -41,8 +43,17 @@ import { ListJobsComponent } from './list-jobs/list-jobs.component';
     MatExpansionModule,
     MatTableModule
   ],
-  declarations: [BdDashComponent, NavbarComponent, JobFormComponent, ManageCandidateComponent, BdStatusComponent, ListJobsComponent],
+  declarations: [
+    BdDashComponent,
+    NavbarComponent,
+    JobFormComponent,
+    ManageCandidateComponent,
+    BdStatusComponent,
+    ListJobsComponent,
+    ModalComponentComponent,
+    JobUpdateModalComponent
+  ],
   providers: [JobFormService],
-  entryComponents: [],
+  entryComponents: [ModalComponentComponent, JobUpdateModalComponent],
 })
 export class BdModule { }

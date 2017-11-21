@@ -1,9 +1,26 @@
 .active{
     color: white !important;
-    background-color: #00467e;
+    background-color: #00467e !important;
     border-color: #00467e;
+    border-bottom: 2px solid #be882b;
 }
 .job-table
 {
     background: #e9ecef;
+    overflow-x: auto;
+}
+.list-group-item{
+    background-color: #e9ecef;
+}
+.ces-job-list{
+    margin-bottom: 5px;
+}
+
+.edit-button{
+margin-left: 10px;
+}
+
+.button-group{
+margin-top: 10px;
+margin-right: 10px;
 }

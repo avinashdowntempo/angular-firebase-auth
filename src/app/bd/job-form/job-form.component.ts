@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, EmailValidator, Validators, FormControl, FormGroup } from '@angular/forms';
 
+import { ModalComponentComponent } from '../modal-component/modal-component.component';
+import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+
 import { FormModal } from '../form-modal';
 import { JobFormService } from '../job-form.service';
 
@@ -15,7 +18,7 @@ export class JobFormComponent implements OnInit {
   selected = 'Chennai';
   jobForm: FormGroup;
   cities: [string] = ['chennai', 'hyderabad', 'vizag', 'vijayawada'];
-  constructor(private fb: FormBuilder, private _jobFormService: JobFormService) {
+  constructor(private fb: FormBuilder, private _jobFormService: JobFormService,private modalService: NgbModal) {
     this.createForm();
     this.jobForm.reset();
   }
@@ -44,7 +47,8 @@ export class JobFormComponent implements OnInit {
       err => console.log('im the mongoerror', err),
       () => {
         console.log('Request Complete');
-        window.alert('form saved');
+        const modalRef = this.modalService.open(ModalComponentComponent);
+        modalRef.componentInstance.name = 'Form Saved Succesfully';
         this.jobForm.reset();
       }
     );
