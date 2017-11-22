@@ -10,7 +10,6 @@ import { Http, RequestOptions } from '@angular/http';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 

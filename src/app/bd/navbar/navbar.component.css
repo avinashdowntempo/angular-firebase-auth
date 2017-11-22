@@ -1,0 +1,14 @@
+.ces-nav{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 1;
+}
+.ces-nav.active{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(0, 70, 126, 0.64);
+}
+li.ces-nav{
+border: 1px solid #dedede;
+}

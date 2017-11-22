@@ -65,3 +65,9 @@ a {
 .mat-select-value {
     color: #212529;
 }
+.modal-backdrop {  
+    z-index: 900;
+}
+.modal {
+    z-index: 950;
+}

@@ -19,7 +19,6 @@
             <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
           </mat-select>
         </mat-form-field>
-
         <mat-form-field class="example-full-width">
           <textarea matInput formControlName="comment" placeholder="Leave a comment"></textarea>
         </mat-form-field>
@@ -39,8 +38,9 @@
           <textarea matInput formControlName="description" placeholder="Description"></textarea>
         </mat-form-field>
         <div class="float-right">
-          <button type="button" (click)="saveForm()" [disabled]="jobForm.status=='INVALID'" class="btn btn-ces">Post</button>
-          <button type="button" (click)="resetForm()" class="btn btn-dark">reset</button>
+            <button *ngIf="inputdata" type="button" [disabled]="jobForm.status=='INVALID'" class="btn btn-dark">update</button>
+          <button *ngIf="!inputdata" type="button" (click)="saveForm()" [disabled]="jobForm.status=='INVALID'" class="btn btn-ces">Post</button>
+          <button *ngIf="!inputdata" type="button" (click)="resetForm()" class="btn btn-dark">reset</button>
         </div>
 
       </div>

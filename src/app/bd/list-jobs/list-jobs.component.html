@@ -5,12 +5,13 @@
       </div>
   </a>
   
-  <div class="job-table" *ngIf="show">
+  <div class="job-div" *ngIf="show">
     <div class="button-group">
       <button class="btn edit-button btn-sm btn-warning float-right" (click)="open()">
           <i class="fa fa-pencil" aria-hidden="true"></i>Edit Job</button>
-      <button class="btn btn-sm btn-success float-right" (click)="open()">Add Candidate</button>
-    </div> 
+      <button class="btn btn-sm btn-success float-right">Add Candidate</button>
+  </div>
+  <div class="job-table">
   <table class="table">
     <thead>
       <tr>
@@ -46,5 +47,6 @@
       </tr>
      </tbody>
   </table>
+  </div>
 </div>
 </div>

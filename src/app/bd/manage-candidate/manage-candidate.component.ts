@@ -9,13 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class ManageCandidateComponent implements OnInit {
   jobs: [any];
   constructor(private _jobFormService: JobFormService) {
+  }
+
+  ngOnInit() {
     this._jobFormService.getJobs().subscribe((result) => {
       this.jobs = result.value;
       console.log('result', result);
     });
-  }
-
-  ngOnInit() {
   }
 
 }

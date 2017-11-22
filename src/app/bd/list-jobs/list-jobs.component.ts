@@ -13,7 +13,7 @@ export class ListJobsComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
   open() {
     const modalRef = this.modalService.open(JobUpdateModalComponent);
-    modalRef.componentInstance.name = this.job;
+    modalRef.componentInstance.job = this.job;
   }
   toggle() {
     this.show = !this.show;

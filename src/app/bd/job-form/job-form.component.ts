@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { FormBuilder, EmailValidator, Validators, FormControl, FormGroup } from '@angular/forms';
 
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
@@ -13,12 +13,15 @@ import { JobFormService } from '../job-form.service';
   styleUrls: ['./job-form.component.css']
 })
 
-export class JobFormComponent implements OnInit {
+export class JobFormComponent implements OnInit, OnChanges {
+  @Input() job: any;
+  inputdata= this.job;
   formdata: FormModal;
   selected = 'Chennai';
   jobForm: FormGroup;
   cities: [string] = ['chennai', 'hyderabad', 'vizag', 'vijayawada'];
-  constructor(private fb: FormBuilder, private _jobFormService: JobFormService,private modalService: NgbModal) {
+
+  constructor(private fb: FormBuilder, private _jobFormService: JobFormService, private modalService: NgbModal) {
     this.createForm();
     this.jobForm.reset();
   }
@@ -53,7 +56,32 @@ export class JobFormComponent implements OnInit {
       }
     );
   }
+  updateForm() {
+    this.jobForm.patchValue({
+      title: this.inputdata.title,
+      technology1: this.inputdata.technology1,
+      technology2: this.inputdata.technology2,
+      technology3: this.inputdata.technology3,
+      city: this.inputdata.city,
+      comment: this.inputdata.comment,
+      minexp: this.inputdata.minexp,
+      maxexp: this.inputdata.maxexp,
+      email: this.inputdata.email,
+      description: this.inputdata.description
+    });
+  }
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // tslint:disable-next-line:forin
+    for (let propName in changes) {
+      let change = changes[propName];
+      let curVal  = change.currentValue;
+      let prevVal = change.previousValue;
+      this.inputdata = curVal;
+      this.updateForm();
+         }
   }
 
 }

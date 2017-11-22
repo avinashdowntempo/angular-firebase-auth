@@ -7,7 +7,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./job-update-modal.component.css']
 })
 export class JobUpdateModalComponent implements OnInit {
-  @Input() data: any;
+  @Input() job: any;
 
   constructor(public activeModal: NgbActiveModal) { }
 
