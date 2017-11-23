@@ -12,6 +12,9 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getJobList();
+  }
+  getJobList() {
     this._jobFormService.getJobs().subscribe((result) => {
       this.jobs = result.value;
       console.log('result', result);

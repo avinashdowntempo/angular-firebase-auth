@@ -1,3 +1,4 @@
+import { BdGuard } from './../loginscreen/bd.guard';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,6 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: BdDashComponent,
+    canActivateChild: [BdGuard],
     children: [
       {
         path: 'job',

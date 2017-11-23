@@ -52,8 +52,12 @@ a {
 }
 .jumbotron[_ngcontent-c7]{
     padding: 11px !important; 
+    margin-bottom: 0px !important;
 }
-
+.jumbotron{
+    padding: 11px !important; 
+    margin-bottom: 0px !important;
+  }
 
 /* material styles*/
 .mat-form-field-placeholder {
@@ -68,6 +72,7 @@ a {
 .modal-backdrop {  
     z-index: 900;
 }
+
 .modal {
     z-index: 950;
 }

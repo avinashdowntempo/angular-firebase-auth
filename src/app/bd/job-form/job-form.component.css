@@ -10,3 +10,7 @@
     background-color: #00467e;
     border-color: #00467e;
 }
+.jumbotron{
+  padding: 11px !important; 
+  margin-bottom: 0px !important;
+}

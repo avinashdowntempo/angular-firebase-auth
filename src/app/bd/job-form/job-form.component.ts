@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
 import { FormBuilder, EmailValidator, Validators, FormControl, FormGroup } from '@angular/forms';
 
 import { ModalComponentComponent } from '../modal-component/modal-component.component';
-import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormModal } from '../form-modal';
 import { JobFormService } from '../job-form.service';
@@ -15,8 +15,10 @@ import { JobFormService } from '../job-form.service';
 
 export class JobFormComponent implements OnInit, OnChanges {
   @Input() job: any;
-  inputdata= this.job;
+  @Output() updateModal: EventEmitter<any> = new EventEmitter();
+  inputdata = this.job;
   formdata: FormModal;
+  hideform = false;
   selected = 'Chennai';
   jobForm: FormGroup;
   cities: [string] = ['chennai', 'hyderabad', 'vizag', 'vijayawada'];
@@ -57,6 +59,19 @@ export class JobFormComponent implements OnInit, OnChanges {
     );
   }
   updateForm() {
+    this._jobFormService.updateJob(this.jobForm.value, this.inputdata._id).subscribe(
+      data => console.log('data from token mongoserver', data),
+      err => console.log('im the mongoerror', err),
+      () => {
+        console.log('Request Complete');
+        /*const modalRef = this.modalService.open(ModalComponentComponent);
+        modalRef.componentInstance.name = 'Form updated Succesfully';*/
+        this.hideform = true;
+        this.updateModal.emit('modal updated');
+      }
+    );
+  }
+  updateFormFields() {
     this.jobForm.patchValue({
       title: this.inputdata.title,
       technology1: this.inputdata.technology1,
@@ -77,11 +92,11 @@ export class JobFormComponent implements OnInit, OnChanges {
     // tslint:disable-next-line:forin
     for (let propName in changes) {
       let change = changes[propName];
-      let curVal  = change.currentValue;
+      let curVal = change.currentValue;
       let prevVal = change.previousValue;
       this.inputdata = curVal;
-      this.updateForm();
-         }
+      this.updateFormFields();
+    }
   }
 
 }

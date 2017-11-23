@@ -1,52 +1,52 @@
 <div class="ces-job-list">
   <a (click)="toggle()" class="list-group-item list-group-item-action" [ngClass]="{'active': show }">
     <div>{{job.title}}
-       <i [ngClass]="{'fa-chevron-down': !show,'fa-chevron-up': show }" class="fa float-right" aria-hidden="true"></i>
-      </div>
+      <i [ngClass]="{'fa-chevron-down': !show,'fa-chevron-up': show }" class="fa float-right" aria-hidden="true"></i>
+    </div>
   </a>
-  
+
   <div class="job-div" *ngIf="show">
     <div class="button-group">
-      <button class="btn edit-button btn-sm btn-warning float-right" (click)="open()">
-          <i class="fa fa-pencil" aria-hidden="true"></i>Edit Job</button>
+      <button class="btn edit-button btn-sm btn-info float-right" (click)="open()">
+        <i class="fa fa-pencil" aria-hidden="true"></i> Edit Job</button>
       <button class="btn btn-sm btn-success float-right">Add Candidate</button>
+    </div>
+    <div class="job-table">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">title</th>
+            <th scope="col">tech1</th>
+            <th scope="col">tech2</th>
+            <th scope="col">tech3</th>
+            <th scope="col">city</th>
+            <th scope="col">comment</th>
+            <th scope="col">minexp</th>
+            <th scope="col">maxexp</th>
+            <th scope="col">email</th>
+            <th scope="col">description</th>
+            <th scope="col">updated</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td scope="col">{{job.title}}</td>
+            <td scope="col">{{job.technology1}}</td>
+            <td scope="col">{{job.technology2}}</td>
+            <td scope="col">{{job.technology3}}</td>
+            <td scope="col">{{job.city}}</td>
+            <td scope="col">{{job.comment}}</td>
+            <td scope="col">{{job.minexp}}</td>
+            <td scope="col">{{job.maxexp}}</td>
+            <td scope="col">{{job.email}}</td>
+            <td scope="col">{{job.description}}</td>
+            <td scope="col">{{job.updated}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="job-table">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">title</th>
-        <th scope="col">tech1</th>
-        <th scope="col">tech2</th>
-        <th scope="col">tech3</th>
-        <th scope="col">city</th>
-        <th scope="col">comment</th>
-        <th scope="col">minexp</th>
-        <th scope="col">maxexp</th>
-        <th scope="col">email</th>
-        <th scope="col">description</th>
-        <th scope="col">updated</th>
-  
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td scope="col">{{job.title}}</td>
-        <td scope="col">{{job.technology1}}</td>
-        <td scope="col">{{job.technology2}}</td>
-        <td scope="col">{{job.technology3}}</td>
-        <td scope="col">{{job.city}}</td>
-        <td scope="col">{{job.comment}}</td>
-        <td scope="col">{{job.minexp}}</td>
-        <td scope="col">{{job.maxexp}}</td>
-        <td scope="col">{{job.email}}</td>
-        <td scope="col">{{job.description}}</td>
-        <td scope="col">{{job.updated}}</td>
-      </tr>
-     </tbody>
-  </table>
-  </div>
-</div>
 </div>

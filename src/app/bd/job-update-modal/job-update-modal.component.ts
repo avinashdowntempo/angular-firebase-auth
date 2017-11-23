@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-job-update-modal',
@@ -8,10 +8,16 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class JobUpdateModalComponent implements OnInit {
   @Input() job: any;
-
+  updateSucess = false;
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
+  }
+  closeModal() {
+    this.updateSucess = true;
+    setTimeout(() => {
+      this.activeModal.close();
+    }, 1000);
   }
 
 }

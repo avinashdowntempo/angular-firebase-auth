@@ -1,10 +1,8 @@
 <div class="container-fluid">
-<div class="lead d-flex ces-padding justify-content-center">List of Jobs</div>
-      <div class="list-group">
-          <app-list-jobs *ngFor="let job of jobs" [job]="job">            
-          </app-list-jobs>          
-        </div>
+  <div class="lead d-flex ces-padding justify-content-center">List of Jobs</div>
+  <div class="list-group">
+    <app-list-jobs (updateModal)="getJobList()" *ngFor="let job of jobs" [job]="job">
+    </app-list-jobs>
+  </div>
 
 </div>
-
-

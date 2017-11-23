@@ -1,16 +1,14 @@
-  <div class="modal-header ">
-      <div class="container">
-      <div class="row">
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.close('Close click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
+<div class="modal-header ">
+  <div class="container">
     <div class="row">
-    <app-job-form [job]="job"></app-job-form>
+      <app-job-form (updateModal)="closeModal()" [job]="job"></app-job-form>
+    </div>
   </div>
-      </div>
+</div>
+
+<div class="modal-footer">
+  <div *ngIf="updateSucess" class="container alert alert-info" role="alert">
+    updated sucessfully
   </div>
- 
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-  </div>
+  <button *ngIf="!updateSucess" type="button" class="container btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
