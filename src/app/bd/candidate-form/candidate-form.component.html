@@ -24,7 +24,7 @@
         </mat-form-field>
 
         <div class="float-right" *ngIf="!hideform">
-          <button *ngIf="inputdata && !hideform" type="button" (click)="updateForm()" [disabled]="candidateForm.status=='INVALID'"
+          <button *ngIf="inputdata && !hideform" type="button" (click)="updateCandidate()" [disabled]="candidateForm.status=='INVALID'"
             class="btn btn-warning">update</button>
           <button *ngIf="!inputdata" type="button" (click)="saveForm()" [disabled]="candidateForm.status=='INVALID'" class="btn btn-ces">Add</button>
           <button *ngIf="!inputdata" type="button" (click)="resetForm()" class="btn btn-dark">reset</button>

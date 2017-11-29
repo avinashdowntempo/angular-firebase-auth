@@ -11,16 +11,18 @@ import { CandidateFormService } from './../candidate-form.service';
   templateUrl: './candidate-form.component.html',
   styleUrls: ['./candidate-form.component.css']
 })
-export class CandidateFormComponent implements OnInit {
+export class CandidateFormComponent implements OnInit, OnChanges {
   @Input() job: any;
+  @Input() candidatedata: any;
   @Output() updateModal: EventEmitter<any> = new EventEmitter();
   hideform = false;
   candidateForm: FormGroup;
   formdata: CandidateModal;
-  constructor(private fb: FormBuilder, private modalService: NgbModal, private _candidateFormService: CandidateFormService) { }
-
-  ngOnInit() {
+  inputdata: any;
+  constructor(private fb: FormBuilder, private modalService: NgbModal, private _candidateFormService: CandidateFormService) {
     this.createForm();
+  }
+  ngOnInit() {
     this.resetForm();
   }
   createForm() {
@@ -30,9 +32,22 @@ export class CandidateFormComponent implements OnInit {
       sec_technology: '',
       experience: ['', Validators.required],
       email: ['', Validators.required],
-      position: [{ value: this.job.title, disabled: true }, Validators.required]
+      position: [{ value: '', disabled: true }, Validators.required]
     });
-    this.updateFormFields()
+  }
+  updateFormFields() {
+    const formTimer = setInterval(() => {
+      if (this.candidateForm !== undefined) {
+        clearInterval(formTimer);
+        this.candidateForm.patchValue({
+          name: this.inputdata.name,
+          pri_technology: this.inputdata.pri_technology,
+          sec_technology: this.inputdata.sec_technology,
+          experience: this.inputdata.experience,
+          email: this.inputdata.email
+        });
+      }
+    }, 100);
   }
   resetForm() {
     this.candidateForm.reset(
@@ -41,7 +56,17 @@ export class CandidateFormComponent implements OnInit {
       }
     );
   }
-
+  updateCandidate() {
+    this._candidateFormService.updateCandidate(this.candidateForm.value, this.inputdata._id).subscribe(
+      data => console.log('data from token mongoserver', data),
+      err => console.log('im the mongoerror', err),
+      () => {
+        console.log('Request Complete');
+        this.hideform = true;
+        this.updateModal.emit(this.inputdata._id);
+      }
+    );
+  }
   saveForm() {
     this.formdata = this.candidateForm.value;
     this.formdata.status = 'pending';
@@ -58,9 +83,20 @@ export class CandidateFormComponent implements OnInit {
     );
   }
 
-  updateFormFields() {
-    this.candidateForm.patchValue({
-    });
+
+  ngOnChanges(changes: SimpleChanges) {
+    // tslint:disable-next-line:forin
+    for (let propName in changes) {
+      let change = changes[propName];
+      let curVal = change.currentValue;
+      let prevVal = change.previousValue;
+      if (propName === 'candidatedata') {
+        this.inputdata = curVal;
+        this.updateFormFields();
+      } else if (propName === 'job') {
+        this.resetForm();
+      }
+    }
   }
 
 }

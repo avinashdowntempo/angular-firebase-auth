@@ -18,6 +18,15 @@ export class CandidateFormService {
       .map(result => result.json());
   }
 
+  updateCandidate(formData: any, _id: number): Observable<any> {
+    const myHeader = new Headers();
+    const body = formData;
+    body._id = _id;
+    myHeader.append('Content-Type', 'application/json');
+    return this.authHttp.patch('https://localhost:3000/candidate/update/', body, { headers: myHeader })
+      .map(result => result.json());
+  }
+
   getCandidate(searchid: any): Observable<any> {
     return this.authHttp.get('https://localhost:3000/candidate/' + searchid)
       .map(result => result.json());

@@ -43,6 +43,18 @@ export class ListJobsComponent implements OnInit {
       }
     });
   }
+  editCandidate(candidate) {
+    const modalRef = this.modalService.open(JobUpdateModalComponent);
+    modalRef.componentInstance.job = this.job;
+    modalRef.componentInstance.candidate = true;
+    modalRef.componentInstance.candidatedata = candidate;
+    modalRef.result.then(result => {
+      if (result !== 'Close click') {
+        this.updateModal.emit(this.job._id);
+        this.show = true;
+      }
+    });
+  }
   toggle() {
     this.show = !this.show;
   }

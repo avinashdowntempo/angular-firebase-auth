@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <app-job-form *ngIf="!candidate" (updateModal)="closeModal()" [job]="job"></app-job-form>
-      <app-candidate-form *ngIf="candidate" (updateModal)="closeModal()" [job]="job"></app-candidate-form>
+      <app-candidate-form *ngIf="candidate" (updateModal)="closeModal()" [candidatedata]="candidatedata" [job]="job"></app-candidate-form>
     </div>
   </div>
 </div>

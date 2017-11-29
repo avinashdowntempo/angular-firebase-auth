@@ -44,8 +44,8 @@
               <span class="badge badge-pill badge-secondary">{{candidate.status}}</span>
             </td>
             <td scope="col" class="justify-content-center">
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              <i class="fa fa-trash-o float-right" aria-hidden="true"></i>
+              <i class="fa fa-pencil-square-o" (click)="editCandidate(candidate)" aria-hidden="true"></i>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
             </td>
           </tr>
         </tbody>
