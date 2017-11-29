@@ -8,6 +8,7 @@ import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class JobUpdateModalComponent implements OnInit {
   @Input() job: any;
+  @Input() candidate: boolean;
   updateSucess = false;
   constructor(public activeModal: NgbActiveModal) { }
 

@@ -22,7 +22,7 @@ export class JobFormService {
     const body = formData;
     body._id = _id;
     myHeader.append('Content-Type', 'application/json');
-    return this.authHttp.patch('https://localhost:3000/jobs/update', body, { headers: myHeader })
+    return this.authHttp.patch('https://localhost:3000/jobs/update/', body, { headers: myHeader })
       .map(result => result.json());
   }
   getJobs(): Observable<any> {

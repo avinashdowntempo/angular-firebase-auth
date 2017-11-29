@@ -1,0 +1,16 @@
+.example-form {
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .btn-ces {
+    color: #fff;
+    background-color: #00467e;
+    border-color: #00467e;
+}
+.jumbotron{
+  padding: 11px !important; 
+  margin-bottom: 0px !important;
+}

@@ -9,41 +9,44 @@
     <div class="button-group">
       <button class="btn edit-button btn-sm btn-info float-right" (click)="open()">
         <i class="fa fa-pencil" aria-hidden="true"></i> Edit Job</button>
-      <button class="btn btn-sm btn-success float-right">Add Candidate</button>
+      <button class="btn btn-sm btn-success float-right" (click)="openCandidate()">Add Candidate</button>
     </div>
     <div class="job-table">
       <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">title</th>
-            <th scope="col">tech1</th>
-            <th scope="col">tech2</th>
-            <th scope="col">tech3</th>
-            <th scope="col">city</th>
-            <th scope="col">comment</th>
-            <th scope="col">minexp</th>
-            <th scope="col">maxexp</th>
+            <th scope="col">name</th>
+            <th scope="col">Primary Technology</th>
+            <th scope="col">Secondary Technology</th>
+            <th scope="col">Position</th>
+            <th scope="col">experience</th>
             <th scope="col">email</th>
-            <th scope="col">description</th>
-            <th scope="col">updated</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
 
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
+          <tr *ngFor="let candidate of candidates; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td scope="col">{{candidate.name}}</td>
+            <td scope="col">{{candidate.pri_technology}}</td>
+            <td scope="col">{{candidate.sec_technology}}</td>
             <td scope="col">{{job.title}}</td>
-            <td scope="col">{{job.technology1}}</td>
-            <td scope="col">{{job.technology2}}</td>
-            <td scope="col">{{job.technology3}}</td>
-            <td scope="col">{{job.city}}</td>
-            <td scope="col">{{job.comment}}</td>
-            <td scope="col">{{job.minexp}}</td>
-            <td scope="col">{{job.maxexp}}</td>
-            <td scope="col">{{job.email}}</td>
-            <td scope="col">{{job.description}}</td>
-            <td scope="col">{{job.updated}}</td>
+            <td scope="col">{{candidate.experience}}</td>
+            <td scope="col">
+              <a href="mailto:{{candidate.email}}?Subject=Hello%20again" target="_top">{{candidate.email}}</a>
+            </td>
+            <td scope="col">{{candidate.updated}}</td>
+            <td scope="col">
+              <span class="badge badge-pill badge-secondary">{{candidate.status}}</span>
+            </td>
+            <td scope="col" class="justify-content-center">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              <i class="fa fa-trash-o float-right" aria-hidden="true"></i>
+            </td>
           </tr>
         </tbody>
       </table>

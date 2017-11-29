@@ -11,20 +11,22 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { JobFormService } from './job-form.service';
+import { CandidateFormService } from './candidate-form.service';
 
 import { BdRouting } from './bd.routing';
 import { BdDashComponent } from './bd-dash/bd-dash.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SharedModule } from '../shared/shared.module';
 import { JobFormComponent } from './job-form/job-form.component';
-import { JobFormService } from './job-form.service';
 import { ManageCandidateComponent } from './manage-candidate/manage-candidate.component';
 import { BdStatusComponent } from './bd-status/bd-status.component';
 import { ListJobsComponent } from './list-jobs/list-jobs.component';
 import { ModalComponentComponent } from './modal-component/modal-component.component';
 import { JobUpdateModalComponent } from './job-update-modal/job-update-modal.component';
+import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 
 @NgModule({
   imports: [
@@ -50,9 +52,10 @@ import { JobUpdateModalComponent } from './job-update-modal/job-update-modal.com
     BdStatusComponent,
     ListJobsComponent,
     ModalComponentComponent,
-    JobUpdateModalComponent
+    JobUpdateModalComponent,
+    CandidateFormComponent
   ],
-  providers: [JobFormService],
+  providers: [JobFormService, CandidateFormService],
   entryComponents: [ModalComponentComponent, JobUpdateModalComponent],
 })
 export class BdModule { }

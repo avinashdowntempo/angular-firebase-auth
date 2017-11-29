@@ -67,7 +67,7 @@ export class JobFormComponent implements OnInit, OnChanges {
         /*const modalRef = this.modalService.open(ModalComponentComponent);
         modalRef.componentInstance.name = 'Form updated Succesfully';*/
         this.hideform = true;
-        this.updateModal.emit('modal updated');
+        this.updateModal.emit(this.inputdata._id);
       }
     );
   }

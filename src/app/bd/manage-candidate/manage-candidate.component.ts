@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageCandidateComponent implements OnInit {
   jobs: [any];
+  opentab: string;
   constructor(private _jobFormService: JobFormService) {
   }
 
@@ -15,6 +16,13 @@ export class ManageCandidateComponent implements OnInit {
     this.getJobList();
   }
   getJobList() {
+    this._jobFormService.getJobs().subscribe((result) => {
+      this.jobs = result.value;
+      console.log('result', result);
+    });
+  }
+  updateJobList(event) {
+    this.opentab = event;
     this._jobFormService.getJobs().subscribe((result) => {
       this.jobs = result.value;
       console.log('result', result);
