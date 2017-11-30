@@ -31,6 +31,16 @@ export class ListJobsComponent implements OnInit {
       console.log('result', result);
     });
   }
+  deleteCandidate(_id) {
+    if (confirm('Are you sure you want to delete') === true) {
+      this._candidateFormService.deleteCandidate(_id).subscribe((result) => {
+        console.log('result', result);
+        this.updateModal.emit(this.job._id);
+        this.show = true;
+      });
+    } else {
+    }
+  }
 
   openCandidate() {
     const modalRef = this.modalService.open(JobUpdateModalComponent);

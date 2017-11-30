@@ -45,7 +45,7 @@
             </td>
             <td scope="col" class="justify-content-center">
               <i class="fa fa-pencil-square-o" (click)="editCandidate(candidate)" aria-hidden="true"></i>
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
+              <i class="fa fa-trash-o" (click)="deleteCandidate(candidate._id)" aria-hidden="true"></i>
             </td>
           </tr>
         </tbody>

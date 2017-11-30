@@ -38,4 +38,7 @@ margin-right: 20px;
 .fa:hover{
     color: #2173d1;
     }
-    
+
+.fa-trash-o:hover{
+    color: red;
+}   

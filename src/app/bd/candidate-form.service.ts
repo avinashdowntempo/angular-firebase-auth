@@ -23,10 +23,17 @@ export class CandidateFormService {
     const body = formData;
     body._id = _id;
     myHeader.append('Content-Type', 'application/json');
-    return this.authHttp.patch('https://localhost:3000/candidate/update/', body, { headers: myHeader })
+    return this.authHttp.patch('https://localhost:3000/candidate/update', body, { headers: myHeader })
       .map(result => result.json());
   }
+  deleteCandidate(_id: string): Observable<any> {
+    const myHeader = new Headers();
+    const body = { _id: _id };
+    myHeader.append('Content-Type', 'application/json');
+    return this.authHttp.patch('https://localhost:3000/candidate/delete', body, { headers: myHeader })
+      .map(result => result.json());
 
+  }
   getCandidate(searchid: any): Observable<any> {
     return this.authHttp.get('https://localhost:3000/candidate/' + searchid)
       .map(result => result.json());
