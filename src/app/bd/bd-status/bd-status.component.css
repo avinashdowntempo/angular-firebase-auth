@@ -1,0 +1,42 @@
+.job-table
+{
+    width:100%;
+    background: #e9ecef;
+    overflow-x: auto;
+    display: inline-block
+}
+.All{
+    color: #fff;
+    background-color: #35d1dc;
+    border-color: #35d1dc;
+}
+.Selected{
+    color: #fff;
+    background-color: #35dc59;
+    border-color: #35dc59;
+}
+
+.Rejected{
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+.Pending{
+    color: #fff;
+    background-color: #dcd135;
+    border-color: #dcd135;
+}
+.circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: -webkit-inline-box;
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    margin-right: 10px;
+}
+.status-btn{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

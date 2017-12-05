@@ -32,10 +32,15 @@ export class CandidateFormService {
     myHeader.append('Content-Type', 'application/json');
     return this.authHttp.patch('https://localhost:3000/candidate/delete', body, { headers: myHeader })
       .map(result => result.json());
-
   }
+
   getCandidate(searchid: any): Observable<any> {
     return this.authHttp.get('https://localhost:3000/candidate/' + searchid)
+      .map(result => result.json());
+  }
+
+  getAllCandidates(): Observable<any> {
+    return this.authHttp.get('https://localhost:3000/candidate/all')
       .map(result => result.json());
   }
 

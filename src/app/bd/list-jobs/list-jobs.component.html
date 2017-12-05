@@ -39,7 +39,7 @@
             <td scope="col">
               <a href="mailto:{{candidate.email}}?Subject=Hello%20again" target="_top">{{candidate.email}}</a>
             </td>
-            <td scope="col">{{candidate.updated}}</td>
+            <td scope="col">{{candidate.updated | date}}</td>
             <td scope="col">
               <span class="badge badge-pill badge-secondary">{{candidate.status}}</span>
             </td>
