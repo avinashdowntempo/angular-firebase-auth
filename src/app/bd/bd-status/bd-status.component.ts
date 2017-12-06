@@ -15,13 +15,32 @@ export class BdStatusComponent implements OnInit {
   constructor(private _candidateFormService: CandidateFormService) { }
 
   listCandidate() {
+    this.display = 'All';
     this._candidateFormService.getAllCandidates().subscribe((result) => {
       this.candidates = result.value;
       console.log('result', result);
     });
   }
-  showCandidate(status) {
-    this.display = status;
+  selectedCandidate() {
+    this.display = 'selected';
+    this._candidateFormService.selectedCandidate().subscribe((result) => {
+      this.candidates = result.value;
+      console.log('result', result);
+    });
+  }
+  pendingCandidate() {
+    this.display = 'pending';
+    this._candidateFormService.pendingCandidate().subscribe((result) => {
+      this.candidates = result.value;
+      console.log('result', result);
+    });
+  }
+  rejectedCandidate() {
+    this.display = 'rejected';
+    this._candidateFormService.rejectedCandidate().subscribe((result) => {
+      this.candidates = result.value;
+      console.log('result', result);
+    });
   }
   ngOnInit() {
     this.listCandidate();

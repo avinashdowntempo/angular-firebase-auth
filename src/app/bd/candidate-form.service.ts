@@ -44,4 +44,19 @@ export class CandidateFormService {
       .map(result => result.json());
   }
 
+  selectedCandidate(): Observable<any> {
+    return this.authHttp.get('https://localhost:3000/candidate/selected')
+      .map(result => result.json());
+  }
+
+  pendingCandidate(): Observable<any> {
+    return this.authHttp.get('https://localhost:3000/candidate/pending')
+      .map(result => result.json());
+  }
+
+  rejectedCandidate(): Observable<any> {
+    return this.authHttp.get('https://localhost:3000/candidate/rejected')
+      .map(result => result.json());
+  }
+
 }

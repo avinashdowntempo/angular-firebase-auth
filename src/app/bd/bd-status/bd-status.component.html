@@ -1,25 +1,25 @@
 <div class="btn-group status-btn">
-  <button type="button" class="btn" [ngClass]="display">{{display}}</button>
+  <button type="button" class="btn selector" [ngClass]="display">{{display}}</button>
   <button type="button" class="btn dropdown-toggle dropdown-toggle-split" [ngClass]="display" data-toggle="dropdown" aria-haspopup="true"
     aria-expanded="false">
     <span class="sr-only">Toggle Dropdown</span>
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" (click)="showCandidate('All')">
+    <a class="dropdown-item" (click)="listCandidate()">
       <div class="circle All"></div>
       <span>All</span>
     </a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" (click)="showCandidate('Selected')">
-      <div class="circle Selected"></div>
+    <a class="dropdown-item" (click)="selectedCandidate()">
+      <div class="circle selected"></div>
       <span>Selected</span>
     </a>
-    <a class="dropdown-item" (click)="showCandidate('Rejected')">
-      <div class="circle Rejected"></div>
+    <a class="dropdown-item" (click)="rejectedCandidate()">
+      <div class="circle rejected"></div>
       <span>Rejected</span>
     </a>
-    <a class="dropdown-item" (click)="showCandidate('Pending')">
-      <div class="circle Pending"></div>
+    <a class="dropdown-item" (click)="pendingCandidate()">
+      <div class="circle pending"></div>
       <span>Pending</span>
     </a>
   </div>
@@ -54,7 +54,7 @@
         </td>
         <td scope="col">{{candidate.updated | date}}</td>
         <td scope="col">
-          <span class="badge badge-pill badge-secondary">{{candidate.status}}</span>
+          <span class="badge badge-pill" [ngClass]="candidate.status">{{candidate.status}}</span>
         </td>
       </tr>
     </tbody>

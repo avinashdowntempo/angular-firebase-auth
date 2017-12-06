@@ -6,25 +6,35 @@
     display: inline-block
 }
 .All{
-    color: #fff;
-    background-color: #35d1dc;
-    border-color: #35d1dc;
+    color: rgb(70, 70, 70);
+    background-color: #bde2ff;
+    border-color: #00467e;
+    border: 1px solid #00467e;
 }
-.Selected{
-    color: #fff;
-    background-color: #35dc59;
-    border-color: #35dc59;
+.selected{
+    color: rgb(70, 70, 70);
+    background-color: 	#d5fcbd;
+    border-color: 	#339900;
+    border: 1px solid #339900;
+}
+.selector{
+    width: 70px;
+}
+.btn{
+    padding: 2px;
 }
 
-.Rejected{
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
+.rejected{
+    color:  rgb(70, 70, 70);
+    background-color: #ffcdbd;
+    border-color: #cc3300;
+    border: 1px solid #cc3300;
 }
-.Pending{
-    color: #fff;
-    background-color: #dcd135;
-    border-color: #dcd135;
+.pending{
+    color: rgb(70, 70, 70);
+    background-color: #ffeebd;
+    border-color: #ffcc00;
+    border: 1px solid #ffcc00;
 }
 .circle {
     width: 8px;
